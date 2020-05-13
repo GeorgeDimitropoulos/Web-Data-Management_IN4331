@@ -1,0 +1,8 @@
+/*Added extra columns in the tables movie_info, aka_name and cast_info*/
+ALTER TABLE movie_info ADD movie_duration INT DEFAULT 130;
+ALTER TABLE movie_info ADD movie_gross double precision DEFAULT 130000000;
+ALTER TABLE movie_info ADD movie_budget double precision DEFAULT 80000000;
+
+ALTER TABLE cast_info add cast_likes int default 50000;
+alter table aka_name add facebook_likes int default 6000;
+

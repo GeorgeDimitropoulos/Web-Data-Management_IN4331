@@ -1,0 +1,52 @@
+aka_name:
+create index aka_name_pid on aka_name(person_id);
+create index aka_name_fb on aka_name(facebook_likes);
+create unique index aka_nameid_indx on aka_name(id);
+
+cast_info:
+create index cast_info_cl on cast_info(cast_likes);
+create index cast_info_pid on cast_info(person_id);
+create index cast_info_mid on cast_info(movie_id);
+create index cast_info_rid on cast_info(role_id);
+create index cast_info_prid on cast_info(person_role_id);
+
+title:
+create unique index title_indx on title(id);
+create index title_t on title(title);
+create index title_py on title(production_year);
+create index title_kid on title(kind_id);
+create index title_enr on title(episode_nr);
+
+role_type:
+create unique index role_type_indx on role_type(id);
+
+movie_companies:
+create index movie_companies_cid on movie_companies(company_id);
+create index movie_companies_mid on movie_companies(movie_id);
+
+movie_info:
+create index movie_info_mid on movie_info(movie_id);
+create index movie_info_mg on movie_info(movie_gross);
+create index movie_info_mb on movie_info(movie_budget);
+
+person:
+create index person_nm on person(name);
+
+movie_keyword:
+create index movie_keyword_mid on movie_keyword(movie_id);
+
+keyword:
+create unique index keyword_indx on keyword(id);
+create index keyword_k on keyword(keyword);
+
+company_name:
+create index company_name_n on company_name(name);
+
+char_name:
+create unique index char_name_indx on char_name(id);
+create index char_name_n on char_name(name);
+
+kind_type:
+create unique index kind_type_indx on kind_type(id);
+create index kind_type_k on kind_type(kind); 
+

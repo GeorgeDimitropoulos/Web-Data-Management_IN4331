@@ -1,0 +1,15 @@
+/*Function that fills column facebook_likes with random values*/
+create or replace function FakeLikesTwo(startvalue integer,valueincr integer,l integer, out count integer)
+as $fkdt$
+declare counter integer=0;
+		n integer=6179000;
+begin
+counter=startvalue;
+while counter<n loop
+raise notice 'hi %',counter;
+update aka_name set facebook_likes=l where person_id=counter;
+count=count+1;
+counter=counter+valueincr;
+end loop;
+end;
+$fkdt$language plpgsql;

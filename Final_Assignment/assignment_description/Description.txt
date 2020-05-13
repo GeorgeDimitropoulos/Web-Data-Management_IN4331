@@ -1,0 +1,1 @@
+Innerworkings of four scalable database systems (PostgreSQl, Apache Spark, Apache Lucene and Neo4j) with the help of a movie database created with information gathered from IMDB.

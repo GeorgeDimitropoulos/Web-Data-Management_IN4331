@@ -1,0 +1,12 @@
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\obj\Debug\Lucene1example.csprojResolveAssemblyReference.cache
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\obj\Debug\Lucene1example.csproj.CoreCompileInputs.cache
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\bin\Debug\Lucene1example.exe.config
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\bin\Debug\Lucene1example.exe
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\bin\Debug\Lucene1example.pdb
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\bin\Debug\Lucene.Net.dll
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\bin\Debug\Lucene.Net.pdb
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\bin\Debug\Lucene.Net.xml
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\obj\Debug\Lucene1example.csproj.CopyComplete
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\obj\Debug\Lucene1example.exe
+C:\Users\pc1\source\repos\Lucene1example\Lucene1example\obj\Debug\Lucene1example.pdb

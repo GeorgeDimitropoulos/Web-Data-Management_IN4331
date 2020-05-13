@@ -1,0 +1,12 @@
+C:\Users\pc1\source\repos\Lucene1example\Index\bin\Debug\Index.exe.config
+C:\Users\pc1\source\repos\Lucene1example\Index\bin\Debug\Index.exe
+C:\Users\pc1\source\repos\Lucene1example\Index\bin\Debug\Index.pdb
+C:\Users\pc1\source\repos\Lucene1example\Index\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\pc1\source\repos\Lucene1example\Index\bin\Debug\Lucene.Net.dll
+C:\Users\pc1\source\repos\Lucene1example\Index\bin\Debug\Lucene.Net.pdb
+C:\Users\pc1\source\repos\Lucene1example\Index\bin\Debug\Lucene.Net.xml
+C:\Users\pc1\source\repos\Lucene1example\Index\obj\Debug\Index.csprojResolveAssemblyReference.cache
+C:\Users\pc1\source\repos\Lucene1example\Index\obj\Debug\Index.csproj.CoreCompileInputs.cache
+C:\Users\pc1\source\repos\Lucene1example\Index\obj\Debug\Index.csproj.CopyComplete
+C:\Users\pc1\source\repos\Lucene1example\Index\obj\Debug\Index.exe
+C:\Users\pc1\source\repos\Lucene1example\Index\obj\Debug\Index.pdb

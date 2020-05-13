@@ -1,0 +1,16 @@
+/*Function that fills column cast_likes with random values*/
+create or replace function FakeLikes(startvalue integer,valueincr integer,l integer, out count integer)
+as $fkdt$
+declare counter integer=0;
+		n integer=6179000;
+begin
+counter=startvalue;
+count=0;
+while counter<n loop
+raise notice 'hi %',counter;
+update cast_info set cast_likes=l where person_id=counter;
+counter=counter+valueincr;
+count=count+1;
+end loop;
+end;
+$fkdt$language plpgsql;

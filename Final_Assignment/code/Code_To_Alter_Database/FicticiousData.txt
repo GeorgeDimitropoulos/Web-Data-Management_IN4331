@@ -1,0 +1,25 @@
+/*Function that fills columns movie_gross, movie_budget and movie_duration with random values*/
+create or replace function fakeData(startvalue integer,valueincr integer,myDuration integer,myGross movie_info.movie_gross%TYPE,myBudget movie_info.movie_budget%TYPE,OUT counter integer)
+as $try1$
+declare count integer=0;
+		n integer=29408190;
+begin
+count=startvalue;
+counter=0;
+raise notice 'What %',count;
+while count<n loop
+raise notice 'HA %',count;
+counter=counter+1;
+update movie_info set movie_gross=myGross where id=count;
+update movie_info set movie_budget=myBudget where id=count;
+update movie_info  set movie_duration=myDuration where id=count;
+count=count+valueincr;	
+end loop;
+end;
+$try1$language plpgsql;
+
+
+
+
+
+

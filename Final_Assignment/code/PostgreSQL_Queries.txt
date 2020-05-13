@@ -1,0 +1,137 @@
+Our queries:
+1) Ratio of likes of a specific actor to those of the cast:
+
+create or replace function findRatio(actorName aka_name.name%TYPE,out counter integer)
+as $fndRt$
+declare ratio float;
+		actorlikes integer=0;
+		idofactor integer;
+		emp integer=0;
+begin
+counter=0;
+select person_id into idofactor from aka_name where name ilike $1;
+select facebook_likes into actorlikes from aka_name where person_id=idofactor order by id desc limit 1;
+for emp in select cast_likes from cast_info where person_id=idofactor loop
+counter=counter+1;
+ratio=actorlikes/emp::float;
+raise notice 'Ratio:%',ratio;
+end loop;
+end;
+$fndRt$language plpgsql;
+
+/* How we would call the function findRatio in command line */
+explain analyse /* Command that shows query plan information*/
+explain analyse
+select findRatio('Moore, Brandon');
+
+
+2) Movie titles where director is "'Abd Al-Hamid, Ja'far" and actor is "Tom Hanks"
+/***************Problematic Case, we could not implement*/
+create function findMovieBy(out exodos integer)
+as $fnd$
+declare movieTitle title.title%TYPE;
+		idofperson cast_info.person_id%TYPE;
+		emp record;
+begin
+for emp in select r.id into idofperson from title as t inner join cast_info as c on t.id=c.movie_id inner join role_type as r on c.role_id=r.id where r.id=8 or r.id=1 or r.id=2 loop  
+exodos=0;
+raise 'Hi % and %',movieTitle, idofperson;
+end loop;
+end
+$fnd$language plpgsql;
+
+
+3) Number of companies who have produced films with love in the title:
+
+explain analyse
+select count(company_id) from movie_companies as m inner join title as t on m.movie_id=t.id where t.title 
+like '% love%';
+
+
+4) The titles of the 1000 more successful movies from 1990-2000:
+
+explain analyse
+select t.title from title as t inner join movie_info as m on m.movie_id=t.id where (t.production_year>=1990 and t.production_year<=2000) order by (m.movie_gross-m.movie_budget) DESC LIMIT 1000;
+
+
+5) Titles of movies or series where actor and character have the same name:
+
+explain analyse
+select title from title as t inner join cast_info as c on t.id=c.movie_id
+inner join person as p on c.person_id=p.id inner join aka_name as n on p.id=n.person_id where (p.name ilike n.name) and (c.role_id=1 or c.role_id=2);
+
+
+6) Title of each movie that has specific keyword(design) in the plot keywords list:
+
+explain analyse
+select title from title as t left join movie_keyword as mk on t.id=mk.movie_id inner join keyword as k on mk.keyword_id=k.id where k.keyword like '%design%';
+
+
+7) How many times a word appears in the whole database:
+/* Cannot be answered by MySQL, another problematic case the answer requires infinite memory since we would 
+have to go through each column of all the tables */
+
+
+8) Sum of movie gross of the movies produced by Amazon for different production years: 
+
+explain analyse
+select sum(m.movie_gross),t.production_year from movie_info as m inner join title as t on m.movie_id=t.id 
+inner join movie_companies as mc on t.id=mc.movie_id 
+inner join company_name as cn on mc.company_id=cn.id where cn.name='Amazon' group by(t.production_year);
+
+9)Average of movie budget spent by Paramount Television for different production years: 
+
+explain analyse
+select avg(m.movie_budget),t.production_year from movie_info as m inner join title as t on m.movie_id=t.id 
+inner join movie_companies as mc on t.id=mc.movie_id 
+inner join company_name as cn on mc.company_id=cn.id where cn.name='Paramount Television' group by(t.production_year); 
+
+
+10) Count of times the character name "Harry" appears in all the tv series of the database:
+
+ explain analyse
+ select count(cn.id),t.title from char_name as cn inner join cast_info as c on cn.id=c.person_role_id inner join movie_info as m on c.movie_id=m.movie_id inner join title as t on m.movie_id=t.id inner join kind_type as k on t.kind_id=k.id where cn.name ilike '%Harry%' and k.kind='tv series' group by(t.title);
+
+11) Find relation between tv series success and number of episodes:
+
+explain analyse
+select t.title,t.episode_nr from role_type as rt inner join cast_info as c on rt.id=c.role_id inner join title as t on c.movie_id=t.id inner join movie_info as m on t.id=m.movie_id order by(m.movie_gross-m.movie_budget);
+
+
+12) How could we be constantly aware of the number of rows of the table titles:
+
+create or replace function countTitles()
+returns trigger as 
+$body$
+declare counter integer=0;
+begin  
+select count(*) into counter from title;
+raise notice 'Number of titles: %',counter;
+return null;
+end;
+$body$language plpgsql;
+
+create trigger addedTitle
+after insert
+on title 
+for each row 
+execute procedure countTitles();
+
+explain analyse 
+insert into title values (-2,'Web Data Management',null,4,2018,null,1,1,1,0);
+
+13) Return the count of times the word keyword kill appears in the titles: 
+explain analyse
+select count(id) from keyword where keyword ilike '%kill%';
+
+14) Return the id of keyword table where keyword is equal to "kill" or phonetic code is equal to "a2525":
+
+explain analyse
+select id from keyword where keyword ilike '%kill%' or phonetic_code='A2525';
+select count(id) from keyword where keyword ilike '%kill%' or phonetic_code='A2525';
+
+
+15) Return number of tuples in table keywords where keyword field starts with kill:
+
+explain analyse
+select id from keyword where keyword='kill%'; 
